@@ -48,7 +48,7 @@ podTemplate(
             
                     sh "/helm init --client-only --skip-refresh"
                     sh "/helm delete --purge drool2"
-                    sh "/helm upgrade --debug --install --namespace micro-system --wait --set service.port=80,service.name=drools-kieserver-service,image.repository=172.20.128.96:5000/nishantchauhan/edc-drool-2,image.tag=${commitId} drool2 drool2"
+                    sh "/helm upgrade --debug --install --namespace default --wait --set service.port=80,service.name=drools-kieserver-service,image.repository=172.20.128.96:5000/nishantchauhan/edc-drool-2,image.tag=${commitId} drool2 drool2"
             }    
         }
     }
