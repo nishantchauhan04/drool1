@@ -38,8 +38,8 @@ podTemplate(
         stage ('Docker-Build') {
             container ('docker') {
                 withDockerRegistry([credentialsId: 'dockerhub']) {
-                    sh "docker build -t 172.20.128.96:5000/nishantchauhan/edc-drool-1:${commitId} ."
-                    sh "docker push 172.20.128.96:5000/nishantchauhan/edc-drool-1:${commitId}"
+                    sh "docker build -t 172.20.128.96:5000/nishantchauhan/edc-drool-2:${commitId} ."
+                    sh "docker push 172.20.128.96:5000/nishantchauhan/edc-drool-2:${commitId}"
                 }    
             }
         }
@@ -47,8 +47,7 @@ podTemplate(
             container ('helm') {
             
                     sh "/helm init --client-only --skip-refresh"
-                    sh "/helm delete --purge nelson"
-                    sh "/helm upgrade --debug --install --namespace micro-system --wait --set service.port=80,image.repository=172.20.128.96:5000/nishantchauhan/edc-drool-1,image.tag=${commitId} nelson nelson"
+                    sh "/helm upgrade --debug --install --namespace micro-system --wait --set service.port=80,image.repository=172.20.128.96:5000/nishantchauhan/edc-drool-2,image.tag=${commitId} nelson nelson"
             }    
         }
     }
