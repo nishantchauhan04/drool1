@@ -34,15 +34,7 @@ podTemplate(
             checkout scm
             commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         }
-        def repository
-        stage ('Docker-Build') {
-            container ('docker') {
-                withDockerRegistry([credentialsId: 'dockerhub']) {
-                    sh "docker build -t 172.20.128.96:5000/nishantchauhan/edc-drool-2:${commitId} ."
-                    sh "docker push 172.20.128.96:5000/nishantchauhan/edc-drool-2:${commitId}"
-                }    
-            }
-        }
+        
         stage ('Deploy') {
             container ('helm') {
             
