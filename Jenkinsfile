@@ -3,6 +3,12 @@ podTemplate(
     inheritFrom: 'default',
     containers: [
         containerTemplate(
+            name: 'docker', 
+            image: 'docker:18.02',
+            ttyEnabled: true,
+            command: 'cat'
+        ),
+        containerTemplate(
             name: 'helm', 
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
